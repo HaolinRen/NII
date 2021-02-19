@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+  font: 10px sans-serif;
+}
+
+svg text{
+  fill:grey;
+  font-size:21px;
+}
+svg .values text{
+  pointer-events:none;
+  stroke-width: 0.5px;
+}
+.groups:hover{
+  cursor:pointer;
+  font-weight:bold;
+}
+</style>
+<body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+<script>
+
+var data = [['DPJ', 'LDP', 294], ['DPJ', 'Komeito', 76], ['DPJ', 'SDP', 84], ['DPJ', 'DPJ', 702], ['DPJ', 'CP', 49], ['DPJ', 'PP', 19], ['DPJ', 'JIP', 10], ['LDP', 'DPJ', 294], ['LDP', 'Komeito', 59], ['LDP', 'LDP', 266], ['LDP', 'SDP', 51], ['LDP', 'CP', 31], ['LDP', 'PP', 14], ['LDP', 'JIP', 5], ['Komeito', 'DPJ', 76], ['Komeito', 'LDP', 59], ['Komeito', 'SDP', 15], ['Komeito', 'Komeito', 4], ['Komeito', 'CP', 13], ['Komeito', 'PP', 7], ['Komeito', 'JIP', 1], ['SDP', 'DPJ', 84], ['SDP', 'LDP', 51], ['SDP', 'Komeito', 15], ['SDP', 'SDP', 0], ['SDP', 'CP', 20], ['SDP', 'PP', 4], ['SDP', 'JIP', 1], ['CP', 'DPJ', 49], ['CP', 'LDP', 31], ['CP', 'Komeito', 13], ['CP', 'SDP', 20], ['CP', 'PP', 3], ['CP', 'JIP', 0], ['PP', 'DPJ', 19], ['PP', 'LDP', 14], ['PP', 'Komeito', 7], ['PP', 'SDP', 4], ['PP', 'CP', 3], ['PP', 'JIP', 2], ['JIP', 'DPJ', 10], ['JIP', 'LDP', 5], ['JIP', 'Komeito', 1], ['JIP', 'SDP', 1], ['JIP', 'CP', 0], ['JIP', 'PP', 2], ['JIP', 'JIP', 2]]
+var colors = {
+"DPJ": "#FF0000",
+"LDP": '#008000',
+"Komeito": "#2471A3",
+"SDP": "#5DADE2",
+"JIP": "#82E0AA",
+"PP": "#F5B041",
+'CP': '#A93226'
+};
+
+var sortOrder =[
+  // 'DPJ', 'LDP', 'Komeito', 'LDP', 'SDP', 'JIP', 'PP'
+];
+
+function sort(a,b){ return d3.ascending(sortOrder.indexOf(a),sortOrder.indexOf(b)); }
+
+var ch = viz.ch().data(data)
+            .padding(.01)
+            .sort(sort)
+            .innerRadius(430)
+            .outerRadius(450)
+            .duration(1000)
+            .chordOpacity(0.3)
+            // .labelPadding(.03)
+            .fill(function(d){console.log(d, colors[d]); return colors[d];});
+
+var width=1200, height=1100;
+
+var svg = d3.select("body").append("svg").attr("height",height).attr("width",width);
+
+svg.append("g").attr("transform", "translate(600,550)").call(ch);
+
+// adjust height of frame in bl.ocks.org
+d3.select(self.frameElement).style("height", height+"px").style("width", width+"px");     
+</script>

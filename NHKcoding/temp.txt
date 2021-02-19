@@ -1,0 +1,75 @@
+Kazuo SHII 8 5 16
+Yukio HATOYAMA 27 5 59
+Yasuo FUKUDA 10 3 41
+Junichiro KOIZUMI 28 9 65
+Takenori KANZAKI 2 0 17
+Taro ASO 12 2 45
+Mizuho FUKUSHIMA 7 1 26
+Katsuya OKADA 5 0 43
+Akihiro OTA 3 0 9
+Naoto KAN 18 2 70
+Shinzo ABE 21 3 45
+Takako DOI 0 0 6
+Shizuka KAMEI 4 0 27
+Ichiro OZAWA 22 4 44
+Yukio EDANO 4 0 28
+Sadakazu TANIGAKI 5 0 23
+Yoshihiko NODA 23 0 39
+Natsuo YAMAGUCHI 5 2 14
+Seiji MAEHARA 7 0 27
+Yoshimi WATANABE 2 0 9
+Shintaro ISHIHARA 3 0 8
+Toru HASHIMOTO 0 0 7
+
+Yukio HATOYAMA 75 4 11
+Junichiro KOIZUMI 77 1 16
+Takenori KANZAKI 18 9 1
+Taro ASO 33 2 24
+Yasuo FUKUDA 39 1 12
+Mizuho FUKUSHIMA 13 0 20
+Katsuya OKADA 24 2 24
+Akihiro OTA 7 2 5
+Naoto KAN 44 2 44
+Yukio EDANO 14 3 18
+Shinzo ABE 47 1 19
+Takako DOI 0 0 6
+Shizuka KAMEI 17 1 14
+Kazuo SHII 20 2 4
+Ichiro OZAWA 55 12 11
+Shintaro ISHIHARA 9 5 2
+Sadakazu TANIGAKI 15 1 13
+Toru HASHIMOTO 5 6 2
+Yoshihiko NODA 49 3 13
+Natsuo YAMAGUCHI 10 9 9
+Seiji MAEHARA 23 1 11
+Yoshimi WATANABE 7 0 4
+
+Junichiro KOIZUMI 42 21 51
+Kazuo SHII 1 2 23
+Takenori KANZAKI 7 4 12
+ 0 178 0
+Yukio HATOYAMA 28 10 58
+Yasuo FUKUDA 23 7 28
+Taro ASO 19 4 38
+Mizuho FUKUSHIMA 5 1 28
+Katsuya OKADA 9 1 39
+Akihiro OTA 3 1 9
+Naoto KAN 8 1 80
+Shinzo ABE 26 6 40
+Takako DOI 2 0 4
+Shizuka KAMEI 0 0 31
+Ichiro OZAWA 10 6 56
+Yukio EDANO 0 0 32
+Sadakazu TANIGAKI 9 2 19
+Yoshihiko NODA 35 1 27
+Shintaro ISHIHARA 3 8 8
+Natsuo YAMAGUCHI 8 0 11
+Seiji MAEHARA 10 2 24
+Yoshimi WATANABE 3 1 8
+Toru HASHIMOTO 5 0 2
+
+
+
+
+
+
