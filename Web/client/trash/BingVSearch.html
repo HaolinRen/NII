@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Visual Searching</title>
+    <link rel="stylesheet" type="text/css" href="CSS/searchResultStyle.css" />
+  </head>
+  <body>
+    <div id="search">
+      <form id="searchInput" class="searchForm">
+        <div class="inputBox">
+          <label class="searchLabel">Date:</label>
+          <input type="text" class="myInput" id="startDate" value="20010101" autocomplete="off" size="8" />
+          <label class="searchLabel">-</label>
+          <input type="text" class="myInput" id="endDate" value="20151230" autocomplete="off" size="8" />
+        </div>
+        <div class="inputBox">
+          <label class="searchLabel">Face:</label>
+          <input type="text" class="myInput" autocomplete="off" size="30" id="searchName"/>
+        </div>
+        <div class="inputBox">
+        
+          <label class="searchLabel">Keyword</label>
+          <input type="text"  class="myInput" id="input" autocomplete="off" size="30" autofocus/>
+          <input type="submit" id="searchButton" value="Search" />
+        
+        </div>
+      </form>
+      <div id="tabs">
+        <ul class="tab-links">
+          <li class="tl" id="wi">Word-Cloud</li>
+          <li class="tl" id="pk">Pack</li>
+          <li class="tl" id="fl">Force</li>
+          <li class="tl" id="mx">Matrix</li>
+          <li class="tl" id="bg">Bubble</li>
+          <li class="tl" id="dg">dendrogram</li>
+          <li class="tl" id="hd">&#8679;</li>
+        </ul>
+      </div>
+    </div>
+    <div id="infoPane" class='inputBox'>
+      <label class="tl infoLabel">test</label>
+      <label class="tl infoLabel">safds</label>
+    </div>
+    <div id="d3Graphs">
+      <div class="tab-content">
+        <div id="gwi" class="graph">
+          <div id="heatBK"></div>
+          <div id="gwicl"></div>
+        </div>
+
+        <div id="gfl" class="graph">
+        </div>
+        <div id="gmx" class="graph">
+        </div>
+        <div id="gbg" class="graph">
+        </div>
+        <div id="dgg" class="graph">
+        </div>
+        <div id="pkg" class="graph">
+        </div>
+      </div>
+      <div id="tpp" class="pps">
+        <div class="graphPara" id="tppg">
+          <div class="pane">
+              <form id="tfw">
+                <div id="nlp1" class="ppp">
+                  <input type="checkbox" id="nlpM1" value="nlp" unchecked>
+                  <label class="ptl">NLP Mode:</label>
+                  <br />
+                  <input type="checkbox" checked>
+                  <label>Nouns</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adverbs</label><br />
+                  <input type="checkbox" checked>
+                  <label>Verbs</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adjectives</label><br />
+                  <input type="checkbox" unchecked>
+                  <label>Values</label>
+                </div>
+                <div id="sc1" class="ppp">
+                  <label class="ptl">Scale:</label><br>
+                  <input type="radio" name="manner" value="linear" />n
+                  <input type="radio" name="manner" value="log" checked />log(n)
+                  <input type="radio" name="manner" value="sqrt" />&radic;<span class="sqrtn">n</span>
+                </div>
+                <div id="wnr" class="ppp">
+                  <label>Max number of words:</label>
+                  <br>
+                  <input type="range" class="ra" id="p1" name="sizeWN" value="100" min="20" max="300" oninput="wn.value=parseInt(p1.value/10)*10" />
+                  <output name="wn" for="p1">100</output>
+                </div>
+                <div id="angleR" class="ppp">
+                  <label>Word's rotate angle:</label>
+                  <input type="range" class="ra" id="p2" name="ro" value="0" min="0" max="90" oninput="wr.value=parseInt(p2.value/10)*10" />
+                  <output name="wr" for="p2">0</output>&deg;
+                </div>
+                <div id="slb" class="ppp">
+                  <input type="checkbox" unchecked>
+                  <label>show images' name</label>
+                </div>
+                <input type="submit" id="wws1" class="subButton" value="Submit" />
+              </form>
+          </div>
+        </div>
+        <div class="groupPara" id="tppgo">
+          <div class="gpPa" id="gpPWord">
+            <form id='gppw'>
+              <div class="ppp">
+                <label>Group Color</label>
+                <input type="checkbox" value="isgc" checked="true">
+              </div>
+              <div class="ppp">
+                <label>Filter group</label>
+                <input type="checkbox" value="gcvw" unchecked>
+              </div>
+              <div class="ppp">
+                <label>Group number:</label>
+                <br>
+                <input type="range" id="gnrw" class="ra" value="8" min="2" max="14" oninput="gncw.value=gnrw.value" />
+                <output name="gncw" for="gnrw">8</output>
+              </div>
+              <div class="ppp">
+                <label>update layout</label>
+                <input type="checkbox" value="udl" unchecked>
+              </div>
+              <input type="submit" id="gfcw" class="subButton" value="submit" />
+            </form>
+          </div>
+        </div>
+        <div class="sideP">
+          <div class="sp" id="apPara1">
+            S<br>E<br>T
+          </div>
+          <div class="sp" id="gpPara1">
+            G<br>P
+          </div>
+          <div id="wlst" class="sp">
+            L<br>t
+          </div>
+          <div id="htmap" class="sp">
+            H<br>t
+          </div>
+        </div>
+      </div>
+      <div id="spp" class="pps">
+        <div class="graphPara" id="sppgp">
+          <div class="pane">
+              <form id="nfw">
+                <div id="nlp2" class="ppp">
+                  <input type="checkbox" id="nlpM1" value="nlp" unchecked>
+                  <label class="ptl">NLP Mode:</label>
+                  <br />
+                  <input type="checkbox" checked>
+                  <label>Nouns</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adverbs</label><br />
+                  <input type="checkbox" checked>
+                  <label>Verbs</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adjectives</label><br />
+                  <input type="checkbox" unchecked>
+                  <label>Values</label>
+                </div>
+                <div id="sc2" class="ppp">
+                  <label class="ptl">Scale:</label><br>
+                  <input type="radio" name="manner" value="linear" />n
+                  <input type="radio" name="manner" value="log" checked />log(n)
+                  <input type="radio" name="manner" value="sqrt" />&radic;<span class="sqrtn">n</span>
+                </div>
+                <div id="nnr" class="ppp">
+                  <label>Max number of nodes:</label>
+                  <br>
+                  <input type="range" class="ra" id="p3" name="sizeNN" value="20" min="10" max="200" oninput="nn.value=parseInt(p3.value/10)*10" />
+                  <output name="nn" for="p3">20</output>
+                </div>
+                <div id="ffp" class="ppp">
+                  <label>Nodes distance:</label>
+                  <br>
+                  <input type="range" class="ra" id="dn" value="200" min="150" max="400" oninput="dno.value=parseInt(dn.value/10)*10" />
+                  <output name="dno" for="dn">200</output>
+                </div>
+                <input type="submit" id="wws2" class="subButton" value="Submit" />
+              </form>
+          </div>
+        </div>
+        <div class="groupPara" id="sppgo">
+          <div class="gpPa" id="gpPNode">
+            <form id = "gfp">
+              <div class="ppp">
+                <label>Group Color</label>
+                <input type="checkbox" value="isgc" checked>
+              </div>
+              <div class="ppp">
+                <label>Filter group</label>
+                <input type="checkbox" value="gcv" checked>
+              </div>
+              <div class="ppp">
+                <label>Group number:</label>
+                <br>
+                <input type="range" id="gnrn" class="ra" value="4" min="2" max="14" oninput="gncn.value=gnrn.value" />
+                <output name="gncn" for="gnrn">4</output>
+              </div>
+              <input type="submit" id="gfcn" class="subButton" value="submit" />
+            </form>
+          </div>
+        </div>
+        <div class="sideP">
+          <div class="sp" id="apPara2">
+            S<br>E<br>T
+          </div>
+          <div class="sp" id="gpPara2">
+            G<br>P
+          </div>
+        </div>
+      </div>
+      <div id="mpp" class="pps">
+        <div class="graphPara" id="mppgp">
+          <div class="pane">
+              <form id="pcw">
+                <div id="nlp3" class="ppp">
+                 <input type="checkbox" id="nlpM1" value="nlp" unchecked>
+                  <label class="ptl">NLP Mode:</label>
+                  <br />
+                  <input type="checkbox" checked>
+                  <label>Nouns</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adverbs</label><br />
+                  <input type="checkbox" checked>
+                  <label>Verbs</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adjectives</label><br />
+                  <input type="checkbox" unchecked>
+                  <label>Values</label>
+                </div>
+                <div id="mxn" class="ppp">
+                  <label>Size of matrix</label>
+                  <input type="range" class="ra" id="mn" value="50" min="30" max="100" oninput="mno.value=parseInt(mn.value/10)*10" />
+                  <output name="mno" for="mn">50</output>
+                </div>
+                <input type="submit" id="wws3" class="subButton" value="Submit" />
+              </form>
+          </div>
+        </div>
+        <div class="groupPara" id="mppgo">
+          <div class="gpPa">
+            <form id = "gmp">
+              <div class="ppp">
+                <label>Group number:</label>
+                <br>
+                <input type="range" id="gmrn" class="ra" value="10" min="2" max="14" oninput="gmcn.value=gmrn.value" />
+                <output name="gmcn" for="gmrn">10</output>
+              </div>
+              <input type="submit" id="gfcm" class="subButton" value="submit" />
+            </form>
+          </div>
+        </div>
+        <div class="sideP">
+          <div class="sp" id="apPara3">
+            S<br>E<br>T
+          </div>
+          <div class="sp" id="gpPara3">
+            G<br>P
+          </div>
+        </div>
+      </div>
+      <div id="bpp" class="pps">
+        <div class="graphPara" id="bppgp">
+          <div class="pane">
+              <form id="bcw">
+                <div id="nlp4" class="ppp">
+                  <input type="checkbox" id="nlpM1" value="nlp" unchecked>
+                  <label class="ptl">NLP Mode:</label>
+                  <br />
+                  <input type="checkbox" checked>
+                  <label>Nouns</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adverbs</label><br />
+                  <input type="checkbox" checked>
+                  <label>Verbs</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adjectives</label><br />
+                  <input type="checkbox" unchecked>
+                  <label>Values</label>
+                </div>
+                <div id="sc3" class="ppp">
+                  <label class="ptl">Scale:</label><br>
+                  <input type="radio" name="manner" value="linear" />n
+                  <input type="radio" name="manner" value="log" checked />log(n)
+                  <input type="radio" name="manner" value="sqrt" />&radic;<span class="sqrtn">n</span>
+                </div>
+                <div id="nbg" class="ppp">
+                  <label>Max number of bubbles:</label>
+                  <br>
+                  <input type="range" class="ra" id="pb" name="sizeNb" value="80" min="20" max="200" oninput="nb.value=parseInt(pb.value/10)*10" />
+                  <output name="nb" for="pb">80</output>
+                </div>
+                <input type="submit" id="wws4" class="subButton" value="Submit" />
+              </form>
+          </div>
+        </div>
+        <div class="groupPara" id="bppgo">
+          <div class="gpPa" id="gpPBubble">
+            <form id="gppb">
+              <div class="ppp">
+                <label>Filter group</label>
+                <input type="checkbox" value="gcv" checked>
+              </div>
+              <div class="ppp">
+                <label>Group number:</label>
+                <br>
+                <input type="range" id="gnrb" class="ra" value="10" min="2" max="14" oninput="gncb.value=gnrb.value" />
+                <output name="gncb" for="gnrb">10</output>
+              </div>
+              <div class="ppp">
+                <label>update layout</label>
+                <input type="checkbox" value="udb" checked>
+              </div>
+              <input type="submit" id="gfcb" class="subButton" value="submit" />
+            </form>
+          </div>
+        </div>
+        <div class="sideP">
+          <div class="sp" id="apPara4">
+            S<br>E<br>T
+          </div>
+          <div class="sp" id="gpPara4">
+            G<br>P
+          </div>
+        </div>
+      </div>
+      <div id="dpp" class="pps">
+        <div class="graphPara" id="dppgp">
+          <div class="pane">
+              <form id="dcw">
+                <div id="nlp5" class="ppp">
+                  <input type="checkbox" id="nlpD1" value="nlp" unchecked>
+                  <label class="ptl">NLP Mode:</label>
+                  <br />
+                  <input type="checkbox" checked>
+                  <label>Nouns</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adverbs</label><br />
+                  <input type="checkbox" checked>
+                  <label>Verbs</label>
+                  <input type="checkbox" unchecked>
+                  <label>Adjectives</label><br />
+                  <input type="checkbox" unchecked>
+                  <label>Values</label>
+                </div>
+                <input type="submit" id="wws5" class="subButton" value="Submit" />
+              </form>
+          </div>
+        </div>
+        <div class="sideP">
+          <div class="sp" id="apPara5">
+            S<br>E<br>T
+          </div>
+        </div>
+      </div>
+      <div id="sInfo">
+        <div id="infoC">
+
+        </div>
+        <div id="infoG">
+        </div>
+
+      </div>
+    </div>
+    <div id="timeline">
+    </div>
+    <div id="searchResult">
+      <div id="singleResult">
+        <div id="webResults">
+          <div id="ttS">
+            <div id="ri" class="index">
+              0 results
+            </div>
+            <div id="rt">
+              Searching results
+            </div>
+            <div id="r3" class="index">
+              Page: 0
+            </div>
+          </div>
+          <ul id="resultsList">
+          </ul>
+          <div id="page">
+            <div id="pf1" class="index">
+              Previous
+            </div>
+            <div id="ps">
+              <select id="pa2">
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+            <div id="pf2" class="index">
+              Next
+            </div>
+          </div>
+        </div>
+        <div id="mb">
+          <p>&#x21ea;</p>
+        </div>
+      </div>     
+    </div>
+    <div id="videoplayer" style="display: none">
+      <video id='vid' controls >
+      </video>
+    </div>
+    <script type="text/javascript" src="scripts/stopWordsEN.js"></script>
+    <script type="text/javascript" src="scripts/nlp.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.12.0.min.js"></script>
+
+    <script src="scripts/numeric-1.2.6.min.js"></script>
+    <script src="scripts/graphPart.js"></script>
+    <script src="scripts/jLouvain.js"></script>
+    <script src="scripts/timeline.js"></script>
+    <script src="scripts/interAnalysis.js"></script>
+    <script src="scripts/d3.min.js"></script>
+    <script src="scripts/d3.layout.cloud.js"></script>
+    <script src="scripts/BingSearch.js"></script>
+  </body>
+</html>
+

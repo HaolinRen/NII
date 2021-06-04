@@ -1,0 +1,3 @@
+
+class grouping(object):
+	pass

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Visual Cloud</title>
+    <link rel="stylesheet" type="text/css" href="CSS/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/custom.css" />
+  </head>
+  <body>
+    <div class="ui sidebar vertical menu">
+        <div class="item header">
+            Settings:
+        </div>
+        <div class="ui item">
+            <div class="header">Maximum searching results:</div>
+            <div class="ui input">
+              <input type="text" placeholder="200">
+            </div>
+        </div>
+        <div class="ui item">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="public" checked="true">
+              <label>Show timeline</label>
+            </div>
+        </div>
+        <div class="ui item" id="sidebarSettingSubmit">
+            <button class="ui blue fluid button">submit</button>
+        </div>
+    </div>
+    <div class="pusher">
+        <div class="ui small stackable menu" id="searchInput">
+            <div class="ui item button" id="pageID">
+                Visual Cloud
+            </div>
+            <div class="item timeInput">
+                <div class="ui left icon input">
+                    <input class="prompt" type="text" placeholder="Start date" id="startDate"/>
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+            <div class="item timeInput">
+                <div class="ui left icon input">
+                    <input class="prompt" type="text" placeholder="End date" />
+                    <i class="calendar icon"></i>
+                </div>
+            </div>
+            <div class="item fcsinput">
+                <form class="ui search" id="faceInput">
+                    <div class="ui left icon input">
+                        <input class="prompt" type="text" placeholder="Person..." />
+                        <i class="users icon"></i>
+                    </div>
+                    <div class="results">
+                    </div>
+                </form>
+            </div>
+            <form class="item fcsinput" id="kdInput">
+                <div class="ui input">
+                  <input type="text" placeholder="Keywords...">
+                </div>
+            </form>
+            <a class="ui icon item" id="submitSearch">
+                <i class="search link icon"></i>
+            </a>
+            <a class="ui icon item" id="addToBox">
+                <i class="add square icon"></i>
+            </a>
+        </div>
+        <div class="ui icon yellow message" id="msgPane">
+          <i class="inbox icon"></i>
+          <div class="content">
+            <div class="header">
+              No related searching results.
+            </div>
+            <p></p>
+          </div>
+        </div>
+        
+        <div class="ui horizontal" id="multiQueryBox">
+            <div class="ui red segment searchBox">
+                <div class="ui icon inline dropdown button">
+                    <span class="text">Date:</span>
+                        <div class="menu">
+                        </div>
+                </div>
+                <div class="searchContent" id="dateQueryBox">
+                    
+                </div>
+            </div>
+            <div class="ui green segment searchBox">
+                <div class="ui icon inline dropdown button">
+                    <span class="text">Face:</span>
+                        <div class="menu">
+                        </div>
+                </div>
+                <div class="searchContent" id="faceQueryBox">
+                </div>
+            </div>
+            <button class="ui green mini button" id="faceOrKeyword">AND</button>
+            <div class="ui blue segment searchBox">
+                <div class="ui icon inline dropdown button">
+                    <span class="text">Keywords:</span>
+                        <div class="menu">
+                        </div>
+                </div>
+                <div class="searchContent" id="keywordQueryBox">
+                </div>
+            </div>
+
+            <button class="ui mini pink button" id="commitBoxSearch">GO</button>
+            <button class="ui mini button" id="clearSearchBox">Clear</button>
+        </div>
+        
+        <div id="content">
+            <div class="ui segment" id="timeline">
+                <a class="ui icon mini button" id="rtTm">
+                    <i class="undo icon"></i>
+                </a>
+            </div>
+            <div id="graphContent">
+                <div class="ui top mini attached tabular menu">
+                    <a class="item tl" id="wi">Visual Cloud</a>
+                    <a class="item tl" id="pk">Pack Layout</a>
+                    <a class="item tl" id="dg">Layer Hierarchy</a>
+                    <a class="item tl" id="fl">Layer Network</a>
+                    <a class="item tl" id="mx">Layer Matrix</a>
+                    <a class="item tl" id="bg">Bubble Graph</a>
+                    <a class="item right floated" id="mdlToggle">Choose terms</a>
+                    <a class="ui right floated pink button tl" id="hd">Hide Graphs</a>
+                </div>
+
+                <div class="ui bottom attached segment graphPane" id="gwi">
+
+                    <div id="heatBK"></div>
+                    <div id="gwicl"></div>
+                </div>
+                <div class="ui bottom attached segment graphPane" id="gfl">
+                </div>
+                <div class="ui bottom attached segment graphPane" id="gmx">
+                </div>
+                <div class="ui bottom attached segment graphPane" id="gbg">
+                </div>
+                <div class="ui bottom attached segment graphPane" id="gdg">
+                </div>
+                <div class="ui bottom attached segment graphPane" id="gpk">
+                </div>
+            </div>
+            <div id="settingPanes">
+                <div class="infoPane" id="tpp">
+                    <div class="ui top mini attached tabular menu">
+                        <a class="active item" id="gs1">Graph Setting</a>
+                        <a class="item" id="gps1">Group Setting</a>
+                    </div>
+                    <div class="ui bottom attached segment settingPane">
+                        <div class="graphPara" id="tppg">
+                            <form id="tfw" class="ui form">
+                                <div class="field">
+                                    <label>Font Family:</label>
+                                    <select class="ui compact dropdown" id="fontfm">
+                                        <option value="Impact">Impact</option>
+                                        <option value="Arial">Arial</option>
+                                        <option value="Helvetica">Helvetica</option>
+                                        <option value="Times New Roman">Times New Roman</option>
+                                        <option value="Times">Times</option>
+                                        <option value="Courier New">Courier New</option>
+                                        <option value="Courier">Courier</option>
+                                        <option value="Verdana">Verdana</option>
+                                        <option value="Georgia">Georgia</option>
+                                        <option value="Palatino">Palatino</option>
+                                        <option value="Garamond">Garamond</option>
+                                        <option value="Bookman">Bookman</option>
+                                        <option value="Comic Sans MS">Comic Sans MS</option>
+                                        <option value="Trebuchet MS">Trebuchet MS</option>
+                                        <option value="Arial Black">Arial Black</option>
+                                    </select>
+                                </div>
+                                <label>Tag Size Scale:</label>
+                                <div id="sc1" class="inline fields">
+
+                                    <div class="field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="tpManner" value="linear" />
+                                            <label>n</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="tpManner" value="log" checked />
+                                            <label>log(n)</label>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui radio checkbox">
+                                            <input type="radio" name="tpManner" value="sqrt" />
+                                            <label>&radic;n</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Aspect Ratio:</label>
+                                    <select class="ui compact dropdown" id="aspratio">
+                                        <option value="a">auto</option>
+                                        <option value="0">1:1</option>
+                                        <option value="1">4:3</option>
+                                        <option value="2">16:9</option>
+                                        <option value="3">16:10</option>
+                                        <option value="4">21:9</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label>Max Number of Words:</label>
+                                    <input type="range" id="p1" value="100" min="20" max="500" oninput="wn.value=parseInt(p1.value/10)*10" />
+                                    <output name="wn" for="p1">100</output>
+                                </div>
+                                <div class="field">
+                                    <div id="slb" class="ui toggle checkbox">
+                                        <input type="checkbox" unchecked>
+                                        <label>Show Images Name</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui orange fluid button" id="htmap">Show Heat Map</div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui fluid button" id="wlst">List Tags</div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="groupPara" id="tppgo">
+                            <form id='gppw' class="ui form">
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                    <input type="checkbox" value="gcvw" unchecked>
+                                    <label>Mouseover Filter group</label>
+                                </div>
+                                </div>
+                                <div class="field">
+                                    <label>Group number:</label>
+                                    <input type="range" id="gnrw" value="5" min="2" max="14" oninput="gncw.value=gnrw.value" />
+                                    <output name="gncw" for="gnrw">5</output>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="infoPane" id="spp">
+                    <div class="ui top mini attached tabular menu">
+                        <a class="active item" id="gs2">Graph Setting</a>
+                        <a class="item" id="gps2">Group Setting</a>
+                    </div>
+                    <div class="ui bottom attached segment settingPane">
+                        <div class="graphPara" id="sppgp">
+                            <form id="nfw" class="ui form">
+                                <label>Node Size Scale:</label>
+                            <div id="sc2" class="inline fields">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="nwManner" value="linear" />
+                                        <label>n</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="nwManner" value="log" checked />
+                                        <label>log(n)</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="nwManner" value="sqrt" />
+                                        <label>&radic;n</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="nnr" class="field">
+                                <label>Max number of Nodes:</label>
+                                <input type="range" id="p3" value="20" min="10" max="200" oninput="nn.value=parseInt(p3.value/10)*10" />
+                                <output name="nn" for="p3">20</output>
+                            </div>
+                            <div class="field" id="ffp">
+                                <label>Nodes Distance:</label>
+                                <input type="range" id="dn" value="200" min="150" max="400" oninput="dno.value=dn.value" />
+                                <output name="dno" for="dn">200</output>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="groupPara" id="sppgo">
+                            <form id='gfp' class="ui form">
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input type="checkbox" checked>
+                                        <label>Mouseover Filter group</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label>Group number:</label>
+                                    <input type="range" id="gnrn" value="4" min="2" max="14" oninput="gncn.value=gnrn.value" />
+                                    <output name="gncn" for="gnrn">4</output>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="infoPane" id="mpp">
+                    <div class="ui top mini attached tabular menu">
+                        <a class="active item" id="gs3">Graph Setting</a>
+                        <a class="item" id="gps3">Group Setting</a>
+                    </div>
+                    <div class="ui bottom attached segment settingPane">
+                        <div class="graphPara" id="mppgp">
+                            <form id="pcw" class="ui form">
+                                <div id="mxn" class="field">
+                                    <label>Size of matrix:</label>
+                                    <input type="range" id="mn" value="30" min="10" max="100" oninput="mno.value=parseInt(mn.value/10)*10" />
+                                    <output name="mno" for="mn">30</output>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="groupPara" id="mppgo">
+                            <form id='gmp' class="ui form">
+                                <div class="field">
+                                    <label>Group number:</label>
+                                    <input type="range" id="gmrn" value="10" min="2" max="14" oninput="gmcn.value=gmrn.value" />
+                                    <output name="gmcn" for="gmrn">10</output>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="infoPane" id="bpp">
+                    <div class="ui top mini attached tabular menu">
+                        <a class="active item" id="gs4">Graph Setting</a>
+                        <a class="item" id="gps4">Group Setting</a>
+                    </div>
+                    <div class="ui bottom attached segment settingPane">
+                        <div class="graphPara" id="bppgp">
+                            <form id="bcw" class="ui form">
+                                <label>Bubble Size Scale:</label>
+                            <div id="sc3" class="inline fields">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="bManner" value="linear" />
+                                        <label>n</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="bManner" value="log" checked />
+                                        <label>log(n)</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="bManner" value="sqrt" />
+                                        <label>&radic;n</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="ngb" class="field">
+                                <label>Max number of bubbles:</label>
+                                <input type="range" id="pb" value="80" min="20" max="200" oninput="nb.value=parseInt(pb.value/10)*10" />
+                                <output name="nb" for="pb">80</output>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="groupPara" id="bppgo">
+                            <form id='gppb' class="ui form">
+                                
+                                <div class="field">
+                                    <label>Group number:</label>
+                                    <input type="range" id="gnrb" value="10" min="2" max="14" oninput="gncb.value=gnrb.value" />
+                                    <output name="gncb" for="gnrb">10</output>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui segment" id="searchResult">
+                <div class="ui orange right ribbon label" id="ri">0 results</div>
+                <div id="resultsList" class="ui divided items">
+                </div>
+                <div class="ui centered grid" id="pageBar">
+                    <div class="column">
+                        <div id="page" class="ui buttons">
+                            <div id="pf1" class="ui mini basic button">
+                                Previous
+                            </div>
+                            <div class="ui dropdown basic button" id="pa2">
+                                <div class="text" id="pageShow">0</div>
+                                <div class="menu">
+                                </div>
+                            </div>
+                            <div id="pf2" class="ui mini basic button">
+                                Next
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div id="vpBoard" class="moveVp">
+                <div class="ui top attached segment" id="videoplayer">
+                  <video id='vid' controls >
+                  </video>
+                </div>
+                <div class="ui mini bottom attached menu">
+                    <div class="item">
+                        <label id="vpTimeInfo">time information</label>
+                    </div>
+                    <div class="ui right floated dropdown item" id="vplanguage">
+                        <label>English</label>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a class="item">Japanese</a>
+                            <a class="item">English</a>
+                            <a class="item">French</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="ui longer modal">
+        <div class="header">Check the terms:</div>
+        <div class="scrolling content">
+            <div class="description">
+                <div class="ui master checkbox">
+                  <input type="checkbox">
+                  <label>All</label>
+                </div>
+                <div class="ui divider"></div>
+                <div class="ui equal width grid">
+
+                    <div class="column">
+                        <div class="ui mini list">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui mini list">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui mini list">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui approve blue button">Confirm</div>
+            <div class="ui cancel button">Cancel</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="truthdict.js"></script>
+    <script type="text/javascript" src="scripts/lib/jquery-1.12.0.min.js"></script>
+    <script src="scripts/lib/semantic.min.js"></script>
+    <script src="scripts/lib/numeric-1.2.6.min.js"></script>
+    <script src="scripts/graph/graphPart.js"></script>
+    <script src="scripts/lib/jLouvain.js"></script>
+    <script src="scripts/timeline.js"></script>
+    <script src="scripts/interAnalysis.js"></script>
+    <script src="scripts/lib/d3.min.js"></script>
+    <script src="scripts/graph/d3.layout.cloud.js"></script>
+    <script src="scripts/BenSearch.js"></script>
+    <script src="scripts/graph/faceCloud.js"></script>
+    <script src="scripts/graph/dendrogram.js"></script>
+    <script src="scripts/graph/packGraph.js"></script>
+    <script src="scripts/index.js"></script>   
+  </body>
+</html>
